@@ -13,8 +13,10 @@ public class ResolverAutomationAssignment extends Helpers {
     public void SetupBeforeMethod() {
         //Navigates to the home page - demand that every test has at the beginning.
         webDriver.get("file://" + getDataFromXmlFile("TestsFileLocation"));
-        //Because 'DataConfig.xml' is in gitignore, you won't be able to see the content of it:
-        // <TestsFileLocation>C:\Users\User\Documents\Automation projects\ResolverTechnicalAssessment\src\main\resources\QE-index.html</TestsFileLocation>
+        /*
+        Because 'DataConfig.xml' is in gitignore, you won't be able to see the content of it:
+        <TestsFileLocation>C:\Users\User\Documents\Automation projects\ResolverTechnicalAssessment\src\main\resources\QE-index.html</TestsFileLocation>
+         */
     }
 
     @Test
@@ -22,12 +24,16 @@ public class ResolverAutomationAssignment extends Helpers {
         //Assert that both the email address and password inputs are present as well as the login button
         webDriverWait.until(ExpectedConditions.visibilityOf(test1.input_email));
         Assert.assertTrue(test1.input_email.isDisplayed());
+
+        webDriverWait.until(ExpectedConditions.visibilityOf(test1.input_password));
         Assert.assertTrue(test1.input_password.isDisplayed());
+
+        webDriverWait.until(ExpectedConditions.visibilityOf(test1.btn_signInButton));
         Assert.assertTrue(test1.btn_signInButton.isDisplayed());
 
         //Enter an email address and password combination into the respective fields
         UiActions.writeTextToWebElement(test1.input_email, "moran.liv2006@gmail.com");
-        UiActions.writeTextToWebElement(test1.input_password, generateAlphaNumericValue(12));
+        UiActions.writeTextToWebElement(test1.input_password, generateAlphaNumericValue(15));
     }
 
     @Test
@@ -79,8 +85,10 @@ public class ResolverAutomationAssignment extends Helpers {
     @Test
     public void test5() {
         //In the test 5 div, wait for a button to be displayed (note: the delay is random) and then click it
-        //The UiActions.clickWebElement method contains elementToBeClickable expected wait condition,
-        // so it doesn't matter how long it's going to take until the element will be displayed, he will wait for it.
+
+        /*The UiActions.clickWebElement method contains elementToBeClickable expected wait condition,
+        so it doesn't matter how long it's going to take until the element will be displayed, he will wait for it.
+        */
         UiActions.clickWebElement(test5.btn_test5Button);
 
         //Once the test5.btn_test5Button element is displayed, we can scroll the screen to it.
@@ -113,8 +121,11 @@ public class ResolverAutomationAssignment extends Helpers {
             System.out.println(exception.getMessage());
             //I put here "Assert.fail" because without it, you won't have any indication that the test has been failed, because of the "catch" section.
             Assert.fail(exception.getMessage());
-            //For example - there is no cell in position (4,2), so you're getting exception error - NoSuchElementException:no such element: Unable to locate element: {"method":"css selector","selector":"#test-6-div > div > table > tbody > tr:nth-child(5) > td:nth-child(3)"}
-            //and without the "fail", the test would look like his passed.
+            /*For example - there is no cell in position (4,2), so you're getting exception error -
+            NoSuchElementException:no such element: Unable to locate element:
+            {"method":"css selector","selector":"#test-6-div > div > table > tbody > tr:nth-child(5) > td:nth-child(3)"}
+            and without the "fail", the test would look like his passed.
+             */
         }
     }
 }

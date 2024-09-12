@@ -8,9 +8,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class UiActions extends Base {
 
     public static void clickWebElement(WebElement webElement) {
-        //The elementToBeClickable expected wait condition is containing the expected wait condition of
-        // ExpectedConditions.visibilityOf, that means the element will be clickable ONLY once when that element
-        // will be visible and enable
+        /*
+        The elementToBeClickable expected wait condition is containing the expected wait condition of
+        ExpectedConditions.visibilityOf, that means the element will be clickable ONLY once when that element
+        will be visible and enable
+         */
         webDriverWait.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
