@@ -39,3 +39,4 @@ build/
 /.idea/
 
 /src/main/resources/QE-index.html
+/src/main/java/Utilities/DataConfig.xml
