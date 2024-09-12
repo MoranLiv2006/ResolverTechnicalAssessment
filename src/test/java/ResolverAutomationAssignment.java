@@ -14,6 +14,8 @@ public class ResolverAutomationAssignment extends Helpers {
         System.out.println("tests before method");
         //Navigates to the home page - demand that every test has at the beginning.
         webDriver.get("file://" + getDataFromXmlFile("TestsFileLocation"));
+        //Because 'DataConfig.xml' is in gitignore, you won't be able to see the content of it:
+        // <TestsFileLocation>C:\Users\User\Documents\Automation projects\ResolverTechnicalAssessment\src\main\resources\QE-index.html</TestsFileLocation>
     }
 
     @Test

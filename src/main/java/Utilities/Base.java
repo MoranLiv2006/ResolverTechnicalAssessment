@@ -1,6 +1,6 @@
 package Utilities;
 
-import PageObjects.TestsPage;
+import PageObjects.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.w3c.dom.Document;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+
+import static Utilities.ManagePages.initPages;
 
 public class Base {
 
@@ -18,11 +25,22 @@ public class Base {
     protected static WebDriverWait webDriverWait;
 
     //Web Page Objects:
-    public static TestsPage testsPage;
+    public static Test1 test1;
+    public static Test2 test2;
+    public static Test3 test3;
+    public static Test4 test4;
+    public static Test5 test5;
+
+//    @BeforeClass
+//    public void setupBeforeClass() {
+//
+//    }
 
     @BeforeMethod
-    public void SetupBeforeMethod() {
+    public void BaseSetupBeforeMethod() {
+        System.out.println("base before method");
         initBrowser(BrowserTypes.CHROME);
+        initPages();
     }
 
     @AfterMethod
@@ -77,8 +95,25 @@ public class Base {
     private void initBrowser(BrowserTypes browserTypes) {
         webDriver = initWebDriverInstance(browserTypes);
         webDriverWait = new WebDriverWait(webDriver, 10);
+//        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10)); //Selenium 4 implementation
 
         webDriver.manage().window().maximize();
-        webDriver.get("file://C:\\Users\\User\\Documents\\Automation projects\\ResolverTechnicalAssessment\\src\\main\\resources\\QE-index.html");
+    }
+
+    protected String getDataFromXmlFile(String nodeName) {
+        File fXmlFile;
+        DocumentBuilderFactory dbFactory;
+        DocumentBuilder dBuilder;
+        Document doc = null;
+        try {
+            fXmlFile = new File("./src/main/java/Utilities/DataConfig.xml");
+            dbFactory = DocumentBuilderFactory.newInstance();
+            dBuilder = dbFactory.newDocumentBuilder();
+            doc = dBuilder.parse(fXmlFile);
+        } catch (Exception e) {
+            System.out.println("Error Reading XML file: " + e);
+        } finally {
+            return doc.getElementsByTagName(nodeName).item(0).getTextContent();
+        }
     }
 }
