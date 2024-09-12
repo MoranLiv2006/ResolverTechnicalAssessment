@@ -20,6 +20,9 @@ import static Utilities.ManagePages.initPages;
 
 public class Base {
 
+    //Prefix of the tests html file location
+    protected final String FILE_LOCATION_PREFIX = "file://";
+
     //Selenium webDriver stuff:
     protected static WebDriver webDriver;
     protected static WebDriverWait webDriverWait;
@@ -32,7 +35,7 @@ public class Base {
     public static Test5 test5;
 
     @BeforeMethod
-    public void BaseSetupBeforeMethod() {
+    public void baseSetupBeforeMethod() {
         initBrowser(BrowserTypes.CHROME);
         initPages();
     }
@@ -47,7 +50,7 @@ public class Base {
         webDriver.quit();
     }
 
-    public enum BrowserTypes {
+    private enum BrowserTypes {
         CHROME("chrome"),
         FIREFOX("firefox"),
         EDGE("edge");
@@ -82,6 +85,8 @@ public class Base {
                 driver = new EdgeDriver();
                 break;
             }
+            default:
+                System.out.println("No such browser type");
         }
         return driver;
     }

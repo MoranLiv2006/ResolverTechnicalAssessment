@@ -33,6 +33,10 @@ public class UiActions extends Base {
     }
 
     public static void chooseDropdownMenuOptionByValue(WebElement dropdownWebElement, WebElement optionToChoose) {
+        /*
+        Because the dropdown menu that is in the HTML file has no "options" in it, I couldn't use the selenium "Select"
+        class that knows how to handle dropdown and options.
+         */
         Actions mouse = new Actions(webDriver);
         mouse.moveToElement(dropdownWebElement).click().moveToElement(optionToChoose).click().build().perform();
     }
