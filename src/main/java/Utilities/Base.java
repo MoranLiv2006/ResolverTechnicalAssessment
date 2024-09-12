@@ -38,7 +38,6 @@ public class Base {
 
     @BeforeMethod
     public void BaseSetupBeforeMethod() {
-        System.out.println("base before method");
         initBrowser(BrowserTypes.CHROME);
         initPages();
     }
@@ -94,8 +93,8 @@ public class Base {
 
     private void initBrowser(BrowserTypes browserTypes) {
         webDriver = initWebDriverInstance(browserTypes);
-        webDriverWait = new WebDriverWait(webDriver, 10);
-//        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10)); //Selenium 4 implementation
+        webDriverWait = new WebDriverWait(webDriver, 15);
+//        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(15)); //Selenium 4 implementation
 
         webDriver.manage().window().maximize();
     }

@@ -11,7 +11,6 @@ public class ResolverAutomationAssignment extends Helpers {
 
     @BeforeMethod
     public void SetupBeforeMethod() {
-        System.out.println("tests before method");
         //Navigates to the home page - demand that every test has at the beginning.
         webDriver.get("file://" + getDataFromXmlFile("TestsFileLocation"));
         //Because 'DataConfig.xml' is in gitignore, you won't be able to see the content of it:
@@ -80,6 +79,8 @@ public class ResolverAutomationAssignment extends Helpers {
     @Test
     public void test5() {
         //In the test 5 div, wait for a button to be displayed (note: the delay is random) and then click it
+        //The UiActions.clickWebElement method contains elementToBeClickable expected wait condition,
+        // so it doesn't matter how long it's going to take until the element will be displayed, he will wait for it.
         UiActions.clickWebElement(test5.btn_test5Button);
 
         //Once the test5.btn_test5Button element is displayed, we can scroll the screen to it.
@@ -96,11 +97,6 @@ public class ResolverAutomationAssignment extends Helpers {
 
     @Test
     public void test6() {
-        WebElement ddd = webDriver.findElement(By.cssSelector("#test-6-div > h1"));
-        webDriverWait.until(ExpectedConditions.visibilityOf(ddd));
-        UiActions.scrollToElement(ddd);
-
-//
         int rowIndex = 2;
         int colIndex = 2;
         WebElement webElement = null;
@@ -108,6 +104,7 @@ public class ResolverAutomationAssignment extends Helpers {
             String matrixCellSelector = getCssSelectorPathOfSpecificCell(rowIndex, colIndex);
             System.out.println("The full css selector of a specific cell within the matrix is: " + matrixCellSelector);
             webElement = webDriver.findElement(By.cssSelector(matrixCellSelector));
+            System.out.println(UiActions.getTextFromElement(webElement));
             if ((rowIndex == 2) && (colIndex == 2)) {
                 //Only if the selected cell is (2,2) then verify his value
                 Assert.assertEquals(UiActions.getTextFromElement(webElement), "Ventosanzap");
