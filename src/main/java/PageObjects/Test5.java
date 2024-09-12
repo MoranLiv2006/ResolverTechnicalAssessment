@@ -5,7 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class Test5 {
-
     @FindBy(how = How.CSS, using = "#test-5-div > h1")
     public WebElement txt_testTitle;
 
@@ -14,5 +13,4 @@ public class Test5 {
 
     @FindBy(how = How.CSS, using = "#test-5-div > div[id='test5-alert']")
     public WebElement txt_test5Alert;
-//
 }
