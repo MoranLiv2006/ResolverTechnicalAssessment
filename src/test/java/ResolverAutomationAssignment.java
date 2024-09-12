@@ -112,7 +112,6 @@ public class ResolverAutomationAssignment extends Helpers {
             String matrixCellSelector = getCssSelectorPathOfSpecificCell(rowIndex, colIndex);
             System.out.println("The full css selector of a specific cell within the matrix is: " + matrixCellSelector);
             webElement = webDriver.findElement(By.cssSelector(matrixCellSelector));
-            System.out.println(UiActions.getTextFromElement(webElement));
             if ((rowIndex == 2) && (colIndex == 2)) {
                 //Only if the selected cell is (2,2) then verify his value
                 Assert.assertEquals(UiActions.getTextFromElement(webElement), "Ventosanzap");
