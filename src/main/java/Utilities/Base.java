@@ -31,11 +31,6 @@ public class Base {
     public static Test4 test4;
     public static Test5 test5;
 
-//    @BeforeClass
-//    public void setupBeforeClass() {
-//
-//    }
-
     @BeforeMethod
     public void BaseSetupBeforeMethod() {
         initBrowser(BrowserTypes.CHROME);
