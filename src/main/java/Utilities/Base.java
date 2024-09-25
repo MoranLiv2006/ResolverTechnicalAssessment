@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -34,18 +35,19 @@ public class Base {
     public static Test4 test4;
     public static Test5 test5;
 
-    @BeforeMethod
+
+    @BeforeMethod(alwaysRun = true)
     public void baseSetupBeforeMethod() {
         initBrowser(BrowserTypes.CHROME);
         initPages();
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDownAfterMethod() {
         webDriver.close();
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         webDriver.quit();
     }

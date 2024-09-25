@@ -5,11 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(Utilities.Listeners.class)
 public class ResolverAutomationAssignment extends Helpers {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void SetupBeforeMethod() {
         //Navigates to the home page - demand that every test has at the beginning.
         webDriver.get(FILE_LOCATION_PREFIX + getDataFromXmlFile("TestsFileLocation"));
@@ -36,7 +38,7 @@ public class ResolverAutomationAssignment extends Helpers {
         UiActions.writeTextToWebElement(test1.input_password, generateAlphaNumericValue(15));
     }
 
-    @Test
+    @Test(groups = {"group"})
     public void test2() {
         //In the test 2 div, assert that there are three values in the listgroup
         Assert.assertEquals(test2.list_listGroup.size(), 3);
@@ -82,7 +84,7 @@ public class ResolverAutomationAssignment extends Helpers {
         Assert.assertFalse(test4.btn_secondaryButton.isEnabled());
     }
 
-    @Test
+    @Test(groups = {"group"})
     public void test5() {
         //In the test 5 div, wait for a button to be displayed (note: the delay is random) and then click it
 
